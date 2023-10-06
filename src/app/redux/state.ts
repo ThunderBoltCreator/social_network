@@ -1,18 +1,4 @@
-import {IDialog, IMessage, IPost} from './data.types'
-
-export interface IState {
-  profilePage: IProfilePage
-  dialogsPage: IDialogsPage
-}
-
-export interface IProfilePage {
-  posts: IPost[]
-}
-
-export interface IDialogsPage {
-  dialogs: IDialog[]
-  messages: IMessage[]
-}
+import {IDialog, IMessage, IPost, IState} from './state.types'
 
 const state: IState = {
   profilePage: {
@@ -39,6 +25,12 @@ const state: IState = {
       {id: 4, message: 'You'}
     ]
   }
+}
+
+export const addPost = (message: string) => {
+  const newPost = {id: 5, message: 'New Post'}
+
+  state.profilePage.posts.push(newPost)
 }
 
 export default state

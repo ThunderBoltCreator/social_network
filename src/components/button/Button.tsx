@@ -10,13 +10,13 @@ export const Button: FC<IButton> = ({callback, children}) => {
 
    // console.log(callback)
 
-   // const onClickButtonHandler = () => {
-   //    callback()
-   // }
+   const onClickButtonHandler = () => {
+      if (callback) {
+         callback()
+      }
+   }
 
-   // console.log(onClickButtonHandler)
    return (
-      <button onClick={() => {
-      }}>{children}</button>
+      <button onClick={onClickButtonHandler}>{children}</button>
    )
 }

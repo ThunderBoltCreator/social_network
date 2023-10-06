@@ -1,21 +1,22 @@
 import React, {FC} from 'react'
-import {IProfilePage} from '../../redux/state'
+import {IProfilePage} from '../../app/redux/state.types'
 import {MyPosts} from './MyPosts'
 
 import s from './Profile.styled'
 import {ProfileInfo} from './ProfileInfo'
 
 interface IProfile {
-  profileState: IProfilePage
+   profileState: IProfilePage
+   addPost: (message: string) => void
 }
 
 
-export const Profile: FC<IProfile> = ({profileState}) => {
+export const Profile: FC<IProfile> = ({profileState, addPost}) => {
 
-  return (
-    <s.Profile>
-      <ProfileInfo/>
-      <MyPosts posts={profileState.posts}/>
-    </s.Profile>
-  )
+   return (
+      <s.Profile>
+         <ProfileInfo/>
+         <MyPosts posts={profileState.posts} addPost={addPost}/>
+      </s.Profile>
+   )
 }
