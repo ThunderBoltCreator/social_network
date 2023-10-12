@@ -5,6 +5,7 @@ import App from './App'
 import {GlobalStyles} from './assets/styles/globalStyles.styled'
 import state, {addPost} from './app/redux/state'
 
+
 ReactDOM.render(
    <>
       <React.StrictMode>

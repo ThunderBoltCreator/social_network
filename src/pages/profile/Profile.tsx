@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useState} from 'react'
 import {IProfilePage} from '../../app/redux/state.types'
 import {MyPosts} from './MyPosts'
 
@@ -12,6 +12,10 @@ interface IProfile {
 
 
 export const Profile: FC<IProfile> = ({profileState, addPost}) => {
+
+   const [title, setTitle] = useState('title1')
+   setTitle(prevState => 'title2')
+   console.log(title)
 
    return (
       <s.Profile>
