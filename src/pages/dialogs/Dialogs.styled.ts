@@ -4,7 +4,8 @@ const Dialogs = styled.div`
   display: grid;
   grid-template-columns: 2fr 10fr;
 `
-const DialogsLink = styled.div``
+const DialogsLink = styled.div`
+`
 const DialogsLinks = styled.div``
 const Messages = styled.div``
 const Message = styled.div``

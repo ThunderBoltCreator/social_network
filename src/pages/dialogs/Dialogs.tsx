@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import {useParams} from 'react-router-dom'
-import {IDialogsPage} from '../../app/redux/state.types'
+import {IDialogsPage} from '../../app/redux/store.types'
 
 import s from './Dialogs.styled'
 import {DialogsLink} from './DialogsLink'
