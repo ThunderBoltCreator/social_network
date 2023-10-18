@@ -1,11 +1,13 @@
-import {DispatchType} from './store'
+import {DispatchAction} from './store'
 
 export interface IStore {
   getState: () => IState
-  // addPost: () => void
-  // changeNewPostText: (newText: string) => void
+  addPost: () => void
+  changeNewPostText: (newText: string) => void
   subscribe: (observer: () => void) => void
-  dispatch: DispatchType
+  dispatch: (action: DispatchAction) => void
+  changeMessageText: (newText: string) => void
+  sendMessage: () => void
 
   _state: IState
   _callSubscriber: () => void
@@ -24,6 +26,7 @@ export interface IProfilePage {
 export interface IDialogsPage {
   dialogs: IDialog[]
   messages: IMessage[]
+  messageText: string
 }
 
 export interface IPost {

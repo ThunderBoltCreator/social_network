@@ -1,46 +1,32 @@
+import {Header} from 'components/layout/header/Header'
+import {Sidebar} from 'components/layout/sidebar/Sidebar'
+import {DialogsContainer} from 'pages/dialogs/DialogsContainer'
+import {ProfileContainer} from 'pages/profile/ProfileContainer'
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-import {IState} from './app/redux/store.types'
 
 import s from './assets/styles/appStyle.styled'
-import {Header} from './components/layout/header/Header'
-import {Sidebar} from './components/layout/sidebar/Sidebar'
-import {Dialogs} from './pages/dialogs/Dialogs'
-import {Profile} from './pages/profile/Profile'
-import {Checkbox} from './shared/checbox'
 
 interface IApp {
-  state: IState
-  addPost: (message: string) => void
-  changeNewPostText: (newText: string) => void
+  // state: RootState
+  // dispatch: (action: DispatchAction) => void
 }
 
 function App(props: IApp) {
-  const {
-    state,
-    changeNewPostText,
-    addPost
-  } = props
+  const {} = props
 
   return (
     <s.AppWrapper>
       <Header/>
       <Sidebar/>
-
-      <Checkbox/>
-
       <s.AppContent>
         <Switch>
-          <Route path={'/profile'}
-                 render={() => <Profile
-                   profileState={state.profilePage}
-                   changeNewPostText={changeNewPostText}
-                   addPost={addPost}
-                 />}/>
-          <Route path={'/dialogs'}
-                 render={() => <Dialogs
-                   dialogsState={state.dialogsPage}
-                 />}/>
+          <Route
+            path={'/profile'}
+            render={() => <ProfileContainer/>}/>
+          <Route
+            path={'/dialogs'}
+            render={() => <DialogsContainer/>}/>
         </Switch>
       </s.AppContent>
     </s.AppWrapper>

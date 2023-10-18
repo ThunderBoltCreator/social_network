@@ -1,22 +1,9 @@
 import {v4} from 'uuid'
-import {IStore} from './store.types'
+import {DialogsActions, dialogsReducer} from './dialogsReducer'
+import {ProfileActions, profileReducer} from './profileReducer'
+import {IMessage, IStore} from './store.types'
 
-export type DispatchType = (action: DispatchAction) => void
-
-export type DispatchAction = AddPostActionType | ChangePostText
-
-export type AddPostActionType = {
-  type: 'ADD-POST'
-  payload: {
-    newPost: string
-  }
-}
-export type ChangePostText = {
-  type: 'CHANGE-NEW-POST-TEXT',
-  payload: {
-    changedText: string
-  }
-}
+export type DispatchAction = ProfileActions | DialogsActions
 
 const store: IStore = {
   _state: {
@@ -43,41 +30,50 @@ const store: IStore = {
         {id: v4(), message: 'How'},
         {id: v4(), message: 'Are'},
         {id: v4(), message: 'You'}
-      ]
+      ],
+      messageText: ''
     }
 
+  },
+  _callSubscriber() {
+  },
+
+  subscribe(observer: () => void) {
+    this._callSubscriber = observer
   },
   getState() {
     return this._state
   },
-  // addPost() {
-  //   const newPost = {id: v4(), message: this._state.profilePage.newPostText}
-  //
-  //   this._state.profilePage.posts.push(newPost)
-  //
-  //   this._callSubscriber()
-  // },
-  // changeNewPostText(newText: string) {
-  //   this._state.profilePage.newPostText = newText
-  //
-  //   this._callSubscriber()
-  // },
-  _callSubscriber() {
-  },
-  subscribe(observer: () => void) {
-    this._callSubscriber = observer
-  },
-  dispatch(action) {
-    if (action.type === 'CHANGE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.payload.changedText
 
-      this._callSubscriber()
-    } else if (action.type === 'ADD-POST') {
-      const newPost = {id: v4(), message: this._state.profilePage.newPostText}
-      this._state.profilePage.posts.push(newPost)
+  addPost() {
+    const newPost = {id: v4(), message: this._state.profilePage.newPostText}
 
-      this._callSubscriber()
+    this._state.profilePage.posts.push(newPost)
+
+    this._callSubscriber()
+  },
+  changeNewPostText(newText: string) {
+    this._state.profilePage.newPostText = newText
+
+    this._callSubscriber()
+  },
+
+  changeMessageText(newText: string) {
+    this._state.dialogsPage.messageText = newText
+  },
+  sendMessage() {
+    const newMessage: IMessage = {message: this._state.dialogsPage.messageText, id: v4()}
+    this._state.dialogsPage.messages.push(newMessage)
+  },
+
+  dispatch(action: DispatchAction) {
+    if (action.type === 'ADD-POST' || action.type === 'CHANGE-NEW-POST-TEXT') {
+      profileReducer(this._state.profilePage, action)
     }
+    if (action.type === 'SEND-MESSAGE' || action.type === 'CHANGE-NEW-MESSAGE-TEXT')
+      dialogsReducer(this._state.dialogsPage, action)
+
+    this._callSubscriber()
   }
 }
 
