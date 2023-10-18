@@ -1,4 +1,6 @@
 import React, {createRef, FC} from 'react'
+import {addPostAC, changeNewPostTextAC} from '../../app/redux/profileReducer'
+import {DispatchAction} from '../../app/redux/store'
 import {IPost} from '../../app/redux/store.types'
 import {Button} from '../../components/button/Button'
 
@@ -8,24 +10,21 @@ import s from './Profile.styled'
 
 export interface IMyPosts {
   posts: IPost[]
-  addPost: (message: string) => void
   newPostText: string
-  changeNewPostText: (newText: string) => void
-
+  // addPost: (message: string) => void
+  // changeNewPostText: (newText: string) => void
+  dispatch: (action: DispatchAction) => void
 }
 
-export const MyPosts: FC<IMyPosts> = ({posts, addPost, changeNewPostText, newPostText}) => {
+export const MyPosts: FC<IMyPosts> = ({posts, newPostText, dispatch}) => {
   const inputRef = createRef<HTMLTextAreaElement>()
 
   const addPostCallback = () => {
-    if (inputRef.current) {
-      addPost(newPostText)
-      changeNewPostText('')
-    }
+    dispatch(addPostAC())
   }
   const onChangePostTextHandler = () => {
     if (inputRef.current) {
-      changeNewPostText(inputRef.current.value)
+      dispatch(changeNewPostTextAC(inputRef.current.value))
     }
   }
 
