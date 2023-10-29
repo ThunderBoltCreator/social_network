@@ -1,16 +1,13 @@
-import React from 'react'
-import {FC} from 'react'
-
-import s from './Profile.styled'
+import React, {FC} from 'react'
 
 interface IPost {
-   message: string
+  message: string
 }
 
 export const Post: FC<IPost> = ({message}) => {
-   return (
-      <s.Post>
-         {message}
-      </s.Post>
-   )
+  return (
+    <div>
+      {message}
+    </div>
+  )
 }

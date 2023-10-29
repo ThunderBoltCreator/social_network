@@ -1,13 +1,11 @@
 import {FC} from 'react'
 
-import s from './Dialogs.styled'
-
 interface IMessageProps {
-   message: string
+  message: string
 }
 
 export const Message: FC<IMessageProps> = ({message}) => {
-   return (
-      <s.Message>{message}</s.Message>
-   )
+  return (
+    <div>{message}</div>
+  )
 }

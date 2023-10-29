@@ -1,30 +1,27 @@
+import {IPost} from 'app/redux/store.types'
 import React, {createRef, FC} from 'react'
-import {addPostAC, changeNewPostTextAC} from '../../app/redux/profileReducer'
-import {DispatchAction} from '../../app/redux/store'
-import {IPost} from '../../app/redux/store.types'
-import {Button} from '../../components/button/Button'
+import {Button} from 'shared/button/Button'
 
 import {Post} from './Post'
 
-import s from './Profile.styled'
 
 export interface IMyPosts {
   posts: IPost[]
   newPostText: string
   // addPost: (message: string) => void
   // changeNewPostText: (newText: string) => void
-  dispatch: (action: DispatchAction) => void
+  // dispatch: (action: DispatchAction) => void
 }
 
-export const MyPosts: FC<IMyPosts> = ({posts, newPostText, dispatch}) => {
+export const MyPosts: FC<IMyPosts> = ({posts, newPostText}) => {
   const inputRef = createRef<HTMLTextAreaElement>()
 
   const addPostCallback = () => {
-    dispatch(addPostAC())
+    // dispatch(addPostAC())
   }
   const onChangePostTextHandler = () => {
     if (inputRef.current) {
-      dispatch(changeNewPostTextAC(inputRef.current.value))
+      // dispatch(changeNewPostTextAC(inputRef.current.value))
     }
   }
 
@@ -32,7 +29,7 @@ export const MyPosts: FC<IMyPosts> = ({posts, newPostText, dispatch}) => {
   let clicked = true
 
   return (
-    <s.MyPosts>
+    <div>
       <h3>My Posts</h3>
       <div>
         <textarea onChange={onChangePostTextHandler} value={newPostText} ref={inputRef}></textarea>
@@ -45,6 +42,6 @@ export const MyPosts: FC<IMyPosts> = ({posts, newPostText, dispatch}) => {
           ))
         }
       </div>
-    </s.MyPosts>
+    </div>
   )
 }

@@ -1,3 +1,3 @@
-import store from 'app/providers/store/config/store'
+import store from 'app/store/config/store'
 
 export type RootState = ReturnType<typeof store.getState>

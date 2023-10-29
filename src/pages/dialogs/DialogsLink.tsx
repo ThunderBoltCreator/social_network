@@ -1,19 +1,17 @@
 import {FC} from 'react'
 import {NavLink} from 'react-router-dom'
 
-import s from './Dialogs.styled'
-
 interface IDialogsLinkProps {
-   name: string
-   id: string | number
+  name: string
+  id: string | number
 }
 
 export const DialogsLink: FC<IDialogsLinkProps> = ({name, id}) => {
-   const path = `/dialogs/${id}`
+  const path = `/dialogs/${id}`
 
-   return (
-      <s.DialogsLink>
-         <NavLink to={path}>{name}</NavLink>
-      </s.DialogsLink>
-   )
+  return (
+    <div>
+      <NavLink to={path}>{name}</NavLink>
+    </div>
+  )
 }
