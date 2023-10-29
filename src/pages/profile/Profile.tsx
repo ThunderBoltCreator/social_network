@@ -1,27 +1,42 @@
-import {IProfilePage} from 'app/redux/store.types'
 import React, {FC} from 'react'
-import {MyPosts} from './MyPosts'
-
-import s from './Profile.styled'
 import {ProfileInfo} from './ProfileInfo'
 
 interface IProfile {
-  profilePage: IProfilePage
+  // profilePage: IProfilePage
 }
 
 
-export const Profile: FC<IProfile> = ({profilePage}) => {
+export const Profile: FC<IProfile> = () => {
 
   return (
-    <s.Profile>
+    <div>
+      Profile
       <ProfileInfo/>
-      <MyPosts
-        posts={profilePage.posts}
-        newPostText={profilePage.newPostText}
-        // addPost={addPost}
-        // changeNewPostText={changeNewPostText}
-        dispatch={dispatch}
-      />
-    </s.Profile>
+      {/*<MyPosts*/}
+      {/*  posts={profilePage.posts}*/}
+      {/*  newPostText={profilePage.newPostText}*/}
+      {/*  // addPost={addPost}*/}
+      {/*  // changeNewPostText={changeNewPostText}*/}
+      {/*  // dispatch={dispatch}*/}
+      {/*/>*/}
+    </div>
   )
 }
+
+// const Profile = styled.div`
+//   img {
+//     width: 100%;
+//   }
+// `
+// const ProfileInfo = styled.div`
+//   > .img-wrapper {
+//     height: 300px;
+//   }
+//
+//   img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     object-position: center;
+//   }
+// `

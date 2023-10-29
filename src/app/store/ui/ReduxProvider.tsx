@@ -1,4 +1,4 @@
-import store from 'app/providers/store/config/store'
+import store from 'app/store/config/store'
 import {FC} from 'react'
 import {Provider} from 'react-redux'
 
