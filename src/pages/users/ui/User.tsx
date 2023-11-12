@@ -26,6 +26,7 @@ export function User({name, status, photos, followed, id}: UserProps) {
           <p>location</p>
           <button>{followed ? 'unfollow' : 'follow'}</button>
         </div>
+
       </div>
     </div>
   )

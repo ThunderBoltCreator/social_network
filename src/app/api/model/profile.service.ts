@@ -7,8 +7,8 @@ interface ProfileServiceModel {
 }
 
 export const ProfileService: ProfileServiceModel = {
-  getProfile(userId: string | number) {
-    const res = $axios.get<ProfileState>(`/profile/${userId}`)
+  async getProfile(userId: string | number) {
+    const res = await $axios.get<ProfileState>(`/profile/${userId}`)
     return res
   }
 }
