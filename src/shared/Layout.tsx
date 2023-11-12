@@ -6,8 +6,8 @@ import {Sidebar} from 'widgets/sidebar/Sidebar'
 export const Layout: FC = ({children}) => {
 
   return (
-    <div>
-      <Header/>
+    <div className='grid grid-rows-2 grid-cols-12'>
+      <Header className='col-span-full'/>
       <Sidebar/>
       <main>
         {children}

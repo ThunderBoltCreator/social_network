@@ -1,10 +1,11 @@
 import React, {FC} from 'react'
 
-interface IHeader {
+interface HeaderProps {
+  className?: string
 }
 
-export const Header: FC<IHeader> = (props) => {
-  return <header>
+export const Header: FC<HeaderProps> = ({className = ''}) => {
+  return <header className={className}>
     <img
       width={90}
       height={50}
