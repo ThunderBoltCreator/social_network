@@ -1,43 +1,48 @@
-import {ChangeEvent, FC} from 'react'
+import {DialogsState} from 'app/store/config/store.model'
+import {DialogsLink} from 'pages/dialogs/ui/DialogsLink'
+import {Message} from 'pages/dialogs/ui/Message'
+import {ChangeEvent} from 'react'
 import {useParams} from 'react-router-dom'
 import {Button} from 'shared/button/Button'
 
-interface IDialogs {
-  // dialogsState: IDialogsPage
-  // dispatch: (action: DispatchAction) => void
+interface DialogsProps {
+  dialogsState: DialogsState
+  changeMessageText: (text: string) => void
+  sendMessage: () => void
 }
 
 interface IParams {
   id: string
 }
 
-export const Dialogs: FC<IDialogs> = ({}) => {
+export function Dialogs({dialogsState, changeMessageText, sendMessage}: DialogsProps) {
   const {id} = useParams<IParams>()
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     console.log(e)
-    // dispatch(changeMessageTextAC(e.currentTarget.value))
+    changeMessageText(e.currentTarget.value)
   }
   const onSendMessage = () => {
-    // dispatch(sendMessageAC())
+    sendMessage()
+    changeMessageText('')
   }
 
-  // const renderMessages = dialogsState.messages.map(m => (<Message key={m.id} message={m.message}/>))
-  // const renderDialogs = dialogsState.dialogs.map(l => (<DialogsLink key={l.id} name={l.name} id={l.id}/>))
+  const renderMessages = dialogsState.messages.map(m => (<Message key={m.id} message={m.message}/>))
+  const renderDialogs = dialogsState.dialogs.map(l => (<DialogsLink key={l.id} name={l.name} id={l.id}/>))
 
   return (
     <div>
 
       <div>
-        {/*{renderDialogs}*/}
+        {renderDialogs}
       </div>
 
       <div>
         <div>
-          {/*{renderMessages}*/}
+          {renderMessages}
         </div>
         <div>
-          {/*<textarea value={dialogsState.messageText} onChange={onChangeHandler}></textarea>*/}
+          <textarea value={dialogsState.messageText} onChange={onChangeHandler}></textarea>
           <Button callback={onSendMessage}>send</Button>
         </div>
       </div>

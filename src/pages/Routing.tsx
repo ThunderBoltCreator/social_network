@@ -1,8 +1,8 @@
-import {HomeContainer} from 'pages/home/HomeContainer'
+import {DialogsContainer} from 'pages/dialogs/container/DialogsContainer'
+import ProfileContainer from 'pages/profile/container/ProfileContainer'
+import UsersContainer from 'pages/users/UsersContainer'
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
-import {DialogsContainer} from './dialogs/DialogsContainer'
-import {ProfileContainer} from './profile/ProfileContainer'
+import {Redirect, Route, Switch} from 'react-router-dom'
 
 export const Routing = () => {
   return (
@@ -11,15 +11,19 @@ export const Routing = () => {
         <Route
           exact
           path="/"
-          render={() => <HomeContainer/>}
+          render={() => <Redirect to="/profile"/>}
         />
         <Route
-          path={'/profile'}
+          path={'/profile/:id?'}
           render={() => <ProfileContainer/>}
         />
         <Route
           path={'/dialogs'}
           render={() => <DialogsContainer/>}
+        />
+        <Route
+          path={'/users'}
+          render={() => <UsersContainer/>}
         />
         {/*<Route*/}
         {/*  path="/messages/:id"*/}

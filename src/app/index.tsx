@@ -1,5 +1,5 @@
 import {Routing} from 'pages/Routing'
-import {Layout} from 'shared/Layout'
+import {Layout} from 'shared/layout/Layout'
 import {WithProviders} from './providers'
 
 const App = () => {

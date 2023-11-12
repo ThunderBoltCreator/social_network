@@ -1,27 +1,26 @@
-import React, {FC} from 'react'
+import clsx from 'clsx'
+import React from 'react'
 import {NavLink} from 'react-router-dom'
+import {NAVIGATION_PATHS} from 'shared/constants/paths'
 
-interface ISidebar {
+interface SidebarProps {
+  className?: string
 }
 
-export const Sidebar: FC<ISidebar> = (props) => {
+export function Sidebar({className = ''}: SidebarProps) {
+  const rootStyles = clsx(className, 'bg-sidebar text-secondary rounded-lg p-3.5 text-2xl')
+
+  const links = NAVIGATION_PATHS.map(({path, name}) => (
+    <div key={name + path}>
+      <NavLink
+        className={(isActive: boolean) => isActive ? 'text-secondary-active' : ''}
+        to={path}
+      >{name}</NavLink>
+    </div>
+  ))
   return (
-    <nav>
-      <div className={''}>
-        <NavLink to="/profile">Profile</NavLink>
-      </div>
-      <div>
-        <NavLink to="/dialogs">Dialogs</NavLink>
-      </div>
-      <div>
-        <NavLink to="/news">News</NavLink>
-      </div>
-      <div>
-        <NavLink to="/music">Music</NavLink>
-      </div>
-      <div>
-        <NavLink to="/settings">Settings</NavLink>
-      </div>
+    <nav className={rootStyles}>
+      {links}
     </nav>
   )
 }
