@@ -1,17 +1,21 @@
-import React, {FC} from 'react'
+import clsx from 'clsx'
+import React from 'react'
+import {FaAppleAlt} from 'react-icons/fa'
+import {Link} from 'react-router-dom'
 
 interface HeaderProps {
   className?: string
 }
 
-export const Header: FC<HeaderProps> = ({className = ''}) => {
-  return <header className={className}>
-    <img
-      width={90}
-      height={50}
-      src="https://1000logos.net/wp-content/uploads/2016/10/Apple-Logo.png"
-      alt=""/>
-  </header>
+export function Header({className = ''}: HeaderProps) {
+  const rootStyles = clsx(className, 'flex')
+  return (
+    <header className={rootStyles}>
+      <Link to={'/'}>
+        <FaAppleAlt color={'#eebbc3'} size={50}/>
+      </Link>
+    </header>
+  )
 }
 
 

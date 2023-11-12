@@ -1,9 +1,9 @@
+import {DialogsState, MessageState} from 'app/store/config/store.model'
 import {v4} from 'uuid'
-import {IDialogsPage, IMessage} from './store.types'
 
 export type DialogsActions = changeMessageText | sendMessage
 
-const initialState: IDialogsPage = {
+const initialState: DialogsState = {
   dialogs: [
     {id: v4(), name: 'Dimych'},
     {id: v4(), name: 'Andrey'},
@@ -21,16 +21,14 @@ const initialState: IDialogsPage = {
   messageText: ''
 }
 
-export const dialogsReducer = (state = initialState, action: DialogsActions): IDialogsPage => {
+export const dialogsReducer = (state = initialState, action: DialogsActions): DialogsState => {
   switch (action.type) {
     case 'CHANGE-NEW-MESSAGE-TEXT': {
-      state.messageText = action.text
-      return state
+      return {...state, messageText: action.text}
     }
     case 'SEND-MESSAGE': {
-      const newMessage: IMessage = {message: state.messageText, id: v4()}
-      state.messages.push(newMessage)
-      return state
+      const newMessage: MessageState = {message: state.messageText, id: v4()}
+      return {...state, messages: [...state.messages, newMessage]}
     }
     default: {
       return state

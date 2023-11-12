@@ -1,27 +1,26 @@
-import {IPost} from 'app/redux/store.types'
-import React, {createRef, FC} from 'react'
+import {PostState} from 'pages/profile/model/postsReducer'
+import {Post} from 'pages/profile/ui/Post'
+import React, {createRef} from 'react'
 import {Button} from 'shared/button/Button'
 
-import {Post} from './Post'
 
-
-export interface IMyPosts {
-  posts: IPost[]
+export interface MyPostsProps {
+  posts: PostState[]
   newPostText: string
-  // addPost: (message: string) => void
-  // changeNewPostText: (newText: string) => void
-  // dispatch: (action: DispatchAction) => void
+  addPost: () => void
+  changeNewPostText: (newText: string) => void
 }
 
-export const MyPosts: FC<IMyPosts> = ({posts, newPostText}) => {
+export function MyPosts({posts, newPostText, changeNewPostText, addPost}: MyPostsProps) {
   const inputRef = createRef<HTMLTextAreaElement>()
 
   const addPostCallback = () => {
-    // dispatch(addPostAC())
+    addPost()
+    changeNewPostText('')
   }
   const onChangePostTextHandler = () => {
     if (inputRef.current) {
-      // dispatch(changeNewPostTextAC(inputRef.current.value))
+      changeNewPostText(inputRef.current.value)
     }
   }
 

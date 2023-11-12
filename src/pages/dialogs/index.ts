@@ -1,0 +1,1 @@
+export {DialogsContainer} from './container/DialogsContainer'
